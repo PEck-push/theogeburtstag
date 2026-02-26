@@ -601,7 +601,7 @@ body {
 .wish-item {
   display: flex;
   align-items: center;
-  gap: 12px;
+  gap: 8px;
   background: rgba(0,0,0,0.05);
   border-radius: 16px;
   padding: 10px;
@@ -612,12 +612,17 @@ body {
   position: relative;
   overflow: hidden;
 }
-.wish-item:active { transform: scale(0.98); }
-.wish-item:hover {
-  transform: translateY(-2px);
+.wish-item:not(.fulfilled):hover {
   box-shadow: 0 6px 20px rgba(0,0,0,0.12);
   border-color: var(--gold);
   background: rgba(245,197,24,0.06);
+}
+.wish-actions {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  gap: 5px;
+  flex-shrink: 0;
 }
 .wish-img-wrap {
   width: 72px; height: 72px;
@@ -629,7 +634,7 @@ body {
   display: flex; align-items: center; justify-content: center;
 }
 .wish-img-wrap img { width:100%; height:100%; object-fit:contain; padding:4px; }
-.wish-info { flex: 1; min-width: 0; }
+.wish-info { flex: 1; min-width: 0; overflow: hidden; }
 .wish-name {
   font-size: 13px;
   font-weight: 700;
@@ -641,12 +646,12 @@ body {
   overflow: hidden;
 }
 .wish-shop { font-size: 11px; color: #aaa; margin-top: 3px; font-weight: 600; }
-.wish-right { display:flex; flex-direction:column; align-items:flex-end; gap:4px; flex-shrink:0; }
 .wish-price {
   font-family: 'Pirata One', cursive;
-  font-size: 18px;
+  font-size: 16px;
   color: var(--teal-dark);
   white-space: nowrap;
+  text-align: right;
 }
 .wish-cta {
   background: var(--gold);
@@ -657,6 +662,48 @@ body {
   font-size: 12px;
   font-weight: 700;
   white-space: nowrap;
+}
+
+/* Erfüllter Wunsch */
+.wish-item.fulfilled {
+  opacity: 0.45;
+  pointer-events: none;
+  filter: grayscale(0.7);
+}
+.wish-item.fulfilled .wish-cta {
+  display: none;
+}
+.wish-fulfilled-badge {
+  background: #2d6a4f;
+  color: #fff;
+  border-radius: 8px;
+  padding: 4px 10px;
+  font-family: 'Boogaloo', cursive;
+  font-size: 12px;
+  font-weight: 700;
+  white-space: nowrap;
+}
+.wish-actions {
+  display: flex;
+  gap: 6px;
+  align-items: center;
+  flex-shrink: 0;
+}
+.wish-mark-btn {
+  background: rgba(0,0,0,0.07);
+  border: none;
+  border-radius: 8px;
+  padding: 4px 8px;
+  font-size: 16px;
+  cursor: pointer;
+  transition: background 0.2s;
+  line-height: 1;
+}
+.wish-mark-btn:hover { background: rgba(0,168,150,0.15); }
+.wish-item.fulfilled .wish-mark-btn {
+  pointer-events: all;  /* Rückgängig immer möglich */
+  opacity: 1;
+  filter: none;
 }
 
 /* ── FOOTER ── */
@@ -1245,40 +1292,57 @@ const CHILDREN = [
 ];
 
 const WISHES = [
-  { name:'Wieso? Weshalb? Warum? Stickerheft – Piraten', price:'€ 7,99',  shop:'amazon.de', img:'img/wish1.png', url:'https://www.amazon.de/dp/347332941X?tag=wunschliste0a-21&linkCode=osi&th=1&psc=1' },
-  { name:'Der kleine Drache Kokosnuss – Die Piraten (Doppelband)', price:'€ 14,00', shop:'amazon.de', img:'img/wish2.png', url:'https://www.amazon.de/dp/3570181448?tag=wunschliste0a-21&linkCode=osi&th=1&psc=1' },
-  { name:'Der kleine Drache Kokosnuss in Australien (Band 30)', price:'€ 10,00', shop:'amazon.de', img:'img/wish3.png', url:'https://www.amazon.de/dp/3570179761?tag=wunschliste0a-21&linkCode=osi&th=1&psc=1' },
-  { name:'PAW PATROL – Ryder-Figur mit Quad-Rettungsfahrzeug', price:'€ 10,29', shop:'amazon.de', img:'img/wish4.png', url:'https://www.amazon.de/dp/B0DCBXNSRS?tag=wunschliste0a-21&linkCode=osi&th=1&psc=1' },
-  { name:'SCHLEICH Dinosaurs – Ankylosaurus 15023', price:'€ 8,79',  shop:'amazon.de', img:'img/wish5.png', url:'https://www.amazon.de/dp/B07Y2V3NFX?tag=wunschliste0a-21&linkCode=osi&th=1&psc=1' },
-  { name:'SCHLEICH Dinosaurs – Tyrannosaurus Rex 14525', price:'€ 14,99', shop:'amazon.de', img:'img/wish6.png', url:'https://www.amazon.de/dp/B0073RSVMC?tag=wunschliste0a-21&linkCode=osi&th=1&psc=1' },
+  { id:'wish1', name:'Wieso? Weshalb? Warum? Stickerheft – Piraten', price:'€ 7,99',  shop:'amazon.de', img:'img/wish1.png', url:'https://www.amazon.de/dp/347332941X?tag=wunschliste0a-21&linkCode=osi&th=1&psc=1' },
+  { id:'wish2', name:'Der kleine Drache Kokosnuss – Die Piraten (Doppelband)', price:'€ 14,00', shop:'amazon.de', img:'img/wish2.png', url:'https://www.amazon.de/dp/3570181448?tag=wunschliste0a-21&linkCode=osi&th=1&psc=1' },
+  { id:'wish3', name:'Der kleine Drache Kokosnuss in Australien (Band 30)', price:'€ 10,00', shop:'amazon.de', img:'img/wish3.png', url:'https://www.amazon.de/dp/3570179761?tag=wunschliste0a-21&linkCode=osi&th=1&psc=1' },
+  { id:'wish4', name:'PAW PATROL – Ryder-Figur mit Quad-Rettungsfahrzeug', price:'€ 10,29', shop:'amazon.de', img:'img/wish4.png', url:'https://www.amazon.de/dp/B0DCBXNSRS?tag=wunschliste0a-21&linkCode=osi&th=1&psc=1' },
+  { id:'wish5', name:'SCHLEICH Dinosaurs – Ankylosaurus 15023', price:'€ 8,79',  shop:'amazon.de', img:'img/wish5.png', url:'https://www.amazon.de/dp/B07Y2V3NFX?tag=wunschliste0a-21&linkCode=osi&th=1&psc=1' },
+  { id:'wish6', name:'SCHLEICH Dinosaurs – Tyrannosaurus Rex 14525', price:'€ 14,99', shop:'amazon.de', img:'img/wish6.png', url:'https://www.amazon.de/dp/B0073RSVMC?tag=wunschliste0a-21&linkCode=osi&th=1&psc=1' },
 ];
 
 /* ────────────────────────────────────────
    WISHLIST
 ──────────────────────────────────────── */
-function renderWishes() {
+var _wishState = {}; // { wishId: true/false }
+
+function renderWishes(fulfilled) {
+  if (fulfilled !== undefined) _wishState = fulfilled;
   const list = document.getElementById('wishList');
-  WISHES.forEach(w => {
-    const a = document.createElement('a');
-    a.className = 'wish-item';
-    a.href = w.url;
-    a.target = '_blank';
-    a.rel = 'noopener';
-    a.innerHTML = `
-      <div class="wish-img-wrap">
-        <img src="${w.img}" alt="${w.name}" loading="lazy">
-      </div>
-      <div class="wish-info">
-        <div class="wish-name">${w.name}</div>
-        <div class="wish-shop">🛍 ${w.shop}</div>
-      </div>
-      <div class="wish-right">
-        <div class="wish-price">${w.price}</div>
-        <div class="wish-cta">Kaufen →</div>
-      </div>`;
-    list.appendChild(a);
+  list.innerHTML = '';
+  WISHES.forEach(function(w) {
+    const done = !!_wishState[w.id];
+    const div = document.createElement('div');
+    div.className = 'wish-item' + (done ? ' fulfilled' : '');
+    div.innerHTML =
+      '<a href="' + (done ? '#' : w.url) + '" ' + (done ? '' : 'target="_blank" rel="noopener"') + ' style="display:flex;align-items:center;gap:12px;flex:1;text-decoration:none;color:inherit;min-width:0;overflow:hidden">' +
+        '<div class="wish-img-wrap"><img src="' + w.img + '" alt="' + w.name + '" loading="lazy"></div>' +
+        '<div class="wish-info">' +
+          '<div class="wish-name">' + w.name + '</div>' +
+          '<div class="wish-shop">🛍 ' + w.shop + '</div>' +
+        '</div>' +
+      '</a>' +
+      '<div class="wish-actions">' +
+        '<div class="wish-price">' + w.price + '</div>' +
+        (done
+          ? '<div class="wish-fulfilled-badge">✅ Gekauft</div>'
+          : '<div class="wish-cta">Kaufen →</div>') +
+        '<button class="wish-mark-btn" data-wid="' + w.id + '" title="' + (done ? 'Markierung aufheben' : 'Als gekauft markieren') + '">' +
+          (done ? '↩️' : '🎁') +
+        '</button>' +
+      '</div>';
+    list.appendChild(div);
   });
 }
+
+document.getElementById('wishList').addEventListener('click', function(e) {
+  const btn = e.target.closest('.wish-mark-btn');
+  if (!btn) return;
+  const wid = btn.dataset.wid;
+  _wishState[wid] = !_wishState[wid];
+  renderWishes();
+  showToast(_wishState[wid] ? '🎁 Geschenk als gekauft markiert!' : '↩️ Markierung aufgehoben');
+  if (window._fbSaveWish) window._fbSaveWish(wid, !!_wishState[wid]);
+});
 
 /* ────────────────────────────────────────
    TOAST
@@ -1350,18 +1414,25 @@ renderRsvp(); // sofort – Kinder immer sichtbar
 // firebaseConfig wird aus src/firebase-config.js geladen
 try {
   firebase.initializeApp(firebaseConfig);
-  var db  = firebase.firestore();
-  var col = db.collection('rsvp');
+  var db       = firebase.firestore();
+  var col      = db.collection('rsvp');
+  var wishCol  = db.collection('wishes');
 
-  // Live-Listener — alle Geräte sehen denselben Stand sofort
+  // RSVP Live-Listener
   col.onSnapshot(function(snapshot) {
     var state = {};
     snapshot.forEach(function(d) { state[d.id] = d.data().status; });
     renderRsvp(state);
   });
-
-  // Speichern
   window._fbSave = function(id, val) { col.doc(id).set({ status: val }); };
+
+  // Wishes Live-Listener
+  wishCol.onSnapshot(function(snapshot) {
+    var state = {};
+    snapshot.forEach(function(d) { state[d.id] = d.data().fulfilled; });
+    renderWishes(state);
+  });
+  window._fbSaveWish = function(id, val) { wishCol.doc(id).set({ fulfilled: val }); };
 
 } catch(e) {
   console.warn('Firebase nicht konfiguriert – läuft lokal.', e);
