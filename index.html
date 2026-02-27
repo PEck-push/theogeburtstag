@@ -29,10 +29,6 @@ body {
   overflow-x: hidden;
   cursor: url("data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' width='32' height='32' viewBox='0 0 32 32'><text y='26' font-size='26'>☠️</text></svg>") 16 16, auto;
 }
-
-/* ══════════════════════════════════════════
-   CANVAS BACKGROUND
-══════════════════════════════════════════ */
 #bgCanvas {
   position: fixed;
   top: 0; left: 0;
@@ -40,10 +36,6 @@ body {
   z-index: 0;
   pointer-events: none;
 }
-
-/* ══════════════════════════════════════════
-   INTRO SCREEN
-══════════════════════════════════════════ */
 #intro {
   position: fixed; inset: 0;
   z-index: 500;
@@ -55,7 +47,6 @@ body {
   overflow: hidden;
 }
 #intro.gone { opacity:0; transform:scale(1.04); pointer-events:none; }
-
 .intro-skull {
   font-size: 100px;
   animation: skullPulse 2s ease-in-out infinite;
@@ -66,7 +57,6 @@ body {
   0%,100% { transform: scale(1) rotate(-5deg); }
   50%      { transform: scale(1.08) rotate(5deg); }
 }
-
 .intro-lightning {
   position: absolute; inset: 0;
   background: radial-gradient(ellipse at 50% 50%, rgba(245,197,24,0.15), transparent 70%);
@@ -76,7 +66,6 @@ body {
   0%,100% { opacity:0.3; }
   50%      { opacity:1; }
 }
-
 .intro-title-wrap {
   position: relative; z-index: 2;
   text-align: center;
@@ -109,12 +98,12 @@ body {
   letter-spacing: 2px;
   margin-top: 4px;
 }
-
 .intro-bar-wrap {
   width: 200px;
-  margin-top: 36px;
+  margin: 36px auto 0;
   position: relative; z-index: 2;
   animation: introSlide 1s ease 0.6s both;
+  text-align: center;
 }
 .intro-bar-label {
   font-family: 'Boogaloo', cursive;
@@ -145,9 +134,10 @@ body {
   font-size: 12px;
   letter-spacing: 1px;
   position: relative; z-index: 2;
+  text-align: center;
+  width: 100%;
+  display: block;
 }
-
-/* Rope decoration in intro */
 .intro-rope {
   position: absolute;
   left: 0; right: 0;
@@ -159,10 +149,6 @@ body {
 }
 .intro-rope-top    { top: 0; }
 .intro-rope-bottom { bottom: 0; }
-
-/* ══════════════════════════════════════════
-   MAIN SCROLLABLE CONTENT
-══════════════════════════════════════════ */
 #main {
   position: relative;
   z-index: 10;
@@ -171,8 +157,6 @@ body {
   transition: opacity 0.8s ease 0.4s;
 }
 #main.visible { opacity:1; pointer-events:all; }
-
-/* ── HERO ── */
 .hero {
   position: relative;
   min-height: 100svh;
@@ -184,25 +168,12 @@ body {
   text-align: center;
   overflow: hidden;
 }
-
-/* Vignette over canvas */
 .hero::before {
   content:'';
   position: absolute; inset: 0;
   background: radial-gradient(ellipse at 50% 30%, transparent 30%, rgba(0,20,15,0.5) 100%);
   pointer-events: none;
 }
-
-.hero-flag-bar {
-  position: absolute;
-  top: 0; left: 0; right: 0;
-  height: 20px;
-  background: repeating-linear-gradient(90deg,
-    #111 0px, #111 24px,
-    var(--skull) 24px, var(--skull) 48px);
-  opacity: 0.8;
-}
-
 .main-pirate-wrap {
   position: relative;
   z-index: 2;
@@ -216,10 +187,7 @@ body {
   0%,100% { transform: translateY(0); }
   50%      { transform: translateY(-12px); }
 }
-.main-pirate-wrap img {
-  width: 100%;
-  display: block;
-}
+.main-pirate-wrap img { width: 100%; display: block; }
 .main-pirate-wrap .pirate-placeholder {
   width: 100%; aspect-ratio: 1/1.2;
   background: linear-gradient(160deg, rgba(0,60,50,0.4), rgba(0,30,25,0.6));
@@ -237,12 +205,7 @@ body {
   letter-spacing: 1px;
   text-align: center;
 }
-
-.hero-title-wrap {
-  position: relative;
-  z-index: 2;
-  margin-bottom: 24px;
-}
+.hero-title-wrap { position: relative; z-index: 2; margin-bottom: 24px; }
 .hero-eyebrow {
   display: inline-block;
   background: var(--gold);
@@ -261,48 +224,25 @@ body {
   font-size: 64px;
   line-height: 0.95;
   color: #fff;
-  text-shadow:
-    4px 5px 0px var(--teal-dark),
-    -2px -2px 0px var(--teal-dark),
-    0 0 60px rgba(245,197,24,0.3);
+  text-shadow: 4px 5px 0px var(--teal-dark), -2px -2px 0px var(--teal-dark), 0 0 60px rgba(245,197,24,0.3);
   letter-spacing: 2px;
 }
 .hero-title .gold { color: var(--gold); text-shadow: 3px 4px 0 var(--gold-dark), 0 0 30px rgba(245,197,24,0.5); }
-
 .scroll-hint {
   position: absolute;
-  bottom: 14px;
-  left: 50%;
+  bottom: 14px; left: 50%;
   transform: translateX(-50%);
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 4px;
-  z-index: 2;
+  display: flex; flex-direction: column;
+  align-items: center; gap: 4px; z-index: 2;
 }
-.scroll-hint span {
-  font-family: 'Boogaloo', cursive;
-  color: rgba(255,255,255,0.5);
-  font-size: 11px;
-  letter-spacing: 2px;
-}
+.scroll-hint span { font-family: 'Boogaloo', cursive; color: rgba(255,255,255,0.5); font-size: 11px; letter-spacing: 2px; }
 .scroll-arrow { font-size: 20px; animation: scrollBounce 1.5s ease-in-out infinite; }
 @keyframes scrollBounce { 0%,100%{transform:translateY(0)} 50%{transform:translateY(6px)} }
-
-/* ── SECTION WRAPPER ── */
-.section-wrap {
-  padding: 0 16px 24px;
-  position: relative;
-  z-index: 10;
-}
-
-/* Rope divider */
+.section-wrap { padding: 0 16px 24px; position: relative; z-index: 10; }
 .rope-divider {
   height: 24px;
   background:
-    repeating-linear-gradient(90deg,
-      transparent 0, transparent 4px,
-      rgba(0,0,0,0.15) 4px, rgba(0,0,0,0.15) 5px),
+    repeating-linear-gradient(90deg, transparent 0, transparent 4px, rgba(0,0,0,0.15) 4px, rgba(0,0,0,0.15) 5px),
     linear-gradient(180deg, var(--wood-mid), var(--wood-light), var(--wood-mid));
   border-radius: 12px;
   margin: 4px 0;
@@ -321,50 +261,31 @@ body {
 }
 .rope-divider::before { left: -4px; }
 .rope-divider::after  { right: -4px; }
-
-/* ── CARD BASE ── */
 .card {
   background: var(--parchment);
   border-radius: 20px;
   overflow: hidden;
-  box-shadow:
-    0 8px 32px rgba(0,0,0,0.35),
-    inset 0 1px 0 rgba(255,255,255,0.8);
+  box-shadow: 0 8px 32px rgba(0,0,0,0.35), inset 0 1px 0 rgba(255,255,255,0.8);
   margin-bottom: 16px;
   position: relative;
 }
 .card::before {
   content:'';
-  position: absolute;
-  inset: 0;
-  background:
-    repeating-linear-gradient(
-      0deg,
-      transparent,
-      transparent 28px,
-      rgba(0,0,0,0.04) 28px,
-      rgba(0,0,0,0.04) 29px
-    );
+  position: absolute; inset: 0;
+  background: repeating-linear-gradient(0deg, transparent, transparent 28px, rgba(0,0,0,0.04) 28px, rgba(0,0,0,0.04) 29px);
   pointer-events: none;
   border-radius: 20px;
 }
-
 .card-header {
   background: linear-gradient(135deg, var(--wood), var(--wood-mid));
   padding: 14px 18px 12px;
-  display: flex;
-  align-items: center;
-  gap: 10px;
-  position: relative;
-  overflow: hidden;
+  display: flex; align-items: center; gap: 10px;
+  position: relative; overflow: hidden;
 }
 .card-header::after {
   content:'';
-  position: absolute;
-  inset: 0;
-  background: repeating-linear-gradient(90deg,
-    transparent 0, transparent 18px,
-    rgba(255,255,255,0.04) 18px, rgba(255,255,255,0.04) 19px);
+  position: absolute; inset: 0;
+  background: repeating-linear-gradient(90deg, transparent 0, transparent 18px, rgba(255,255,255,0.04) 18px, rgba(255,255,255,0.04) 19px);
 }
 .card-header-icon { font-size: 26px; position:relative; z-index:1; }
 .card-header-title {
@@ -376,12 +297,8 @@ body {
   letter-spacing: 1px;
 }
 .card-body { padding: 18px; }
-
-/* ── INFO ROWS ── */
 .info-row {
-  display: flex;
-  align-items: center;
-  gap: 14px;
+  display: flex; align-items: center; gap: 14px;
   background: rgba(0,0,0,0.06);
   border-radius: 14px;
   padding: 14px 16px;
@@ -394,419 +311,175 @@ body {
   background: linear-gradient(135deg, var(--wood), var(--wood-mid));
   border-radius: 12px;
   display: flex; align-items: center; justify-content: center;
-  font-size: 24px;
-  flex-shrink: 0;
+  font-size: 24px; flex-shrink: 0;
   box-shadow: 0 3px 10px rgba(0,0,0,0.25);
 }
 .info-label { font-size: 10px; color: #888; font-weight: 800; text-transform: uppercase; letter-spacing: 1.5px; }
 .info-value { font-size: 18px; font-weight: 800; color: var(--wood); line-height: 1.2; }
 .info-sub   { font-size: 13px; color: var(--teal-dark); font-weight: 600; margin-top: 2px; }
-
-/* ── CREW SECTION ── */
-.crew-intro {
-  background: linear-gradient(135deg, rgba(0,168,150,0.15), rgba(0,77,71,0.2));
-  border: 1px solid rgba(0,168,150,0.3);
-  border-radius: 14px;
-  padding: 14px 16px;
-  margin-bottom: 16px;
-  font-size: 13px;
-  color: #555;
-  line-height: 1.6;
-  font-style: italic;
-}
-.crew-intro strong { color: var(--teal-dark); }
-.crew-grid {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 12px;
-}
-.crew-slot {
-  position: relative;
-  aspect-ratio: 3/4;
-  border-radius: 16px;
-  overflow: hidden;
-  border: 4px solid var(--wood-mid);
-  box-shadow: 0 6px 20px rgba(0,0,0,0.3), inset 0 0 0 2px rgba(245,197,24,0.3);
-  background: linear-gradient(160deg, #1a3a32, #0d2720);
-}
-.crew-slot img {
-  width: 100%; height: 100%;
-  object-fit: cover;
-  object-position: top;
-  display: block;
-}
-.crew-slot .crew-ph {
-  position: absolute; inset: 0;
-  display: flex; flex-direction: column;
-  align-items: center; justify-content: center;
-  gap: 8px;
-}
-.crew-ph .ph-skull { font-size: 48px; opacity: 0.4; }
-.crew-ph .ph-filename {
-  font-family: 'Boogaloo', cursive;
-  color: rgba(245,197,24,0.5);
-  font-size: 13px;
-  text-align: center;
-  padding: 0 8px;
-  line-height: 1.3;
-}
-.crew-frame-label {
-  position: absolute;
-  bottom: 0; left: 0; right: 0;
-  background: linear-gradient(transparent, rgba(0,0,0,0.7));
-  padding: 16px 8px 8px;
-  text-align: center;
-  font-family: 'Boogaloo', cursive;
-  color: var(--gold);
-  font-size: 13px;
-  letter-spacing: 1px;
-}
-/* Corner nails on crew frames */
-.crew-slot::before, .crew-slot::after {
-  content:'';
-  position: absolute;
-  width: 10px; height: 10px;
-  background: var(--gold);
-  border-radius: 50%;
-  z-index: 2;
-  box-shadow: 0 1px 3px rgba(0,0,0,0.5);
-}
-.crew-slot::before { top: 6px; left: 6px; }
-.crew-slot::after  { top: 6px; right: 6px; }
-
-/* ── RSVP ── */
-.rsvp-summary-bar {
-  display: flex;
-  gap: 8px;
-  margin-bottom: 14px;
-}
+.rsvp-summary-bar { display: flex; gap: 8px; margin-bottom: 14px; }
 .summary-pill {
-  flex: 1;
-  border-radius: 12px;
-  padding: 10px 6px;
-  text-align: center;
+  flex: 1; border-radius: 12px;
+  padding: 10px 6px; text-align: center;
   border: 2px solid transparent;
 }
 .pill-yes  { background: rgba(0,120,100,0.12); border-color: rgba(0,120,100,0.2); }
 .pill-no   { background: rgba(192,57,43,0.1);  border-color: rgba(192,57,43,0.2); }
-.pill-open { background: rgba(0,0,0,0.06);      border-color: rgba(0,0,0,0.08); }
-.pill-count {
-  font-family: 'Pirata One', cursive;
-  font-size: 28px;
-  line-height: 1;
-}
+.pill-open { background: rgba(0,0,0,0.06);     border-color: rgba(0,0,0,0.08); }
+.pill-count { font-family: 'Pirata One', cursive; font-size: 28px; line-height: 1; }
 .pill-yes .pill-count  { color: #007A6A; }
 .pill-no .pill-count   { color: var(--red); }
 .pill-open .pill-count { color: #aaa; }
 .pill-label { font-size: 9px; font-weight:800; letter-spacing:1px; text-transform:uppercase; color:#999; margin-top:3px; }
-
 .rsvp-deadline {
   background: linear-gradient(135deg, rgba(245,197,24,0.15), rgba(200,155,10,0.08));
   border: 1px dashed rgba(245,197,24,0.5);
   border-radius: 12px;
-  padding: 10px 14px;
-  margin-bottom: 14px;
-  font-size: 13px;
-  color: var(--wood);
-  font-weight: 700;
-  text-align: center;
+  padding: 10px 14px; margin-bottom: 14px;
+  font-size: 13px; color: var(--wood); font-weight: 700; text-align: center;
 }
-
 .rsvp-list { display: flex; flex-direction: column; gap: 8px; }
-
 .rsvp-item {
-  display: flex;
-  align-items: center;
-  gap: 10px;
+  display: flex; align-items: center; gap: 10px;
   background: rgba(0,0,0,0.05);
-  border-radius: 14px;
-  padding: 10px 12px;
+  border-radius: 14px; padding: 10px 12px;
   border: 1px solid rgba(0,0,0,0.07);
   transition: background 0.2s;
 }
 .rsvp-avatar {
-  width: 42px; height: 42px;
-  border-radius: 50%;
+  width: 42px; height: 42px; border-radius: 50%;
   background: linear-gradient(135deg, var(--wood), var(--wood-mid));
   display: flex; align-items: center; justify-content: center;
-  font-size: 22px;
-  flex-shrink: 0;
+  font-size: 22px; flex-shrink: 0;
   border: 2px solid rgba(245,197,24,0.3);
   box-shadow: 0 2px 8px rgba(0,0,0,0.2);
 }
 .rsvp-name-wrap { flex: 1; min-width: 0; }
 .rsvp-name { font-size: 17px; font-weight: 800; color: var(--wood); }
-.rsvp-status-text {
-  font-size: 11px;
-  font-weight: 700;
-  letter-spacing: 1px;
-  text-transform: uppercase;
-}
+.rsvp-status-text { font-size: 11px; font-weight: 700; letter-spacing: 1px; text-transform: uppercase; }
 .status-yes  { color: #007A6A; }
 .status-no   { color: var(--red); }
 .status-open { color: #bbb; }
-
 .rsvp-btns { display: flex; gap: 6px; }
 .rsvp-btn {
-  border: 2px solid transparent;
-  border-radius: 10px;
-  padding: 7px 12px;
-  font-family: 'Boogaloo', cursive;
-  font-size: 14px;
-  cursor: pointer;
-  transition: all 0.2s;
-  line-height: 1;
+  border: 2px solid transparent; border-radius: 10px;
+  padding: 7px 12px; font-family: 'Boogaloo', cursive;
+  font-size: 14px; cursor: pointer; transition: all 0.2s; line-height: 1;
 }
-.btn-yes {
-  background: rgba(0,120,100,0.1);
-  color: #007A6A;
-  border-color: rgba(0,120,100,0.2);
-}
-.btn-yes.active {
-  background: #007A6A;
-  color: #fff;
-  border-color: #007A6A;
-  box-shadow: 0 3px 10px rgba(0,120,100,0.4);
-  transform: scale(1.05);
-}
-.btn-no {
-  background: rgba(192,57,43,0.08);
-  color: var(--red);
-  border-color: rgba(192,57,43,0.2);
-}
-.btn-no.active {
-  background: var(--red);
-  color: #fff;
-  border-color: var(--red);
-  box-shadow: 0 3px 10px rgba(192,57,43,0.4);
-  transform: scale(1.05);
-}
-
-/* ── WISHLIST ── */
+.btn-yes { background: rgba(0,120,100,0.1); color: #007A6A; border-color: rgba(0,120,100,0.2); }
+.btn-yes.active { background: #007A6A; color: #fff; border-color: #007A6A; box-shadow: 0 3px 10px rgba(0,120,100,0.4); transform: scale(1.05); }
+.btn-no  { background: rgba(192,57,43,0.08); color: var(--red); border-color: rgba(192,57,43,0.2); }
+.btn-no.active  { background: var(--red); color: #fff; border-color: var(--red); box-shadow: 0 3px 10px rgba(192,57,43,0.4); transform: scale(1.05); }
 .wish-header-note {
-  background: var(--parch-dark);
-  border-radius: 12px;
-  padding: 14px 16px;
-  margin-bottom: 16px;
-  font-size: 13.5px;
-  color: #555;
-  line-height: 1.6;
-  border-left: 5px solid var(--gold);
-  font-style: italic;
+  background: var(--parch-dark); border-radius: 12px;
+  padding: 14px 16px; margin-bottom: 16px;
+  font-size: 13.5px; color: #555; line-height: 1.6;
+  border-left: 5px solid var(--gold); font-style: italic;
 }
 .wish-header-note strong { color: var(--wood); font-style: normal; }
-
 .wish-list { display: flex; flex-direction: column; gap: 10px; }
-
 .wish-item {
-  display: flex;
-  align-items: center;
-  gap: 8px;
+  display: flex; align-items: center; gap: 8px;
   background: rgba(0,0,0,0.05);
-  border-radius: 16px;
-  padding: 10px;
-  text-decoration: none;
-  color: inherit;
+  border-radius: 16px; padding: 10px;
   border: 1px solid rgba(0,0,0,0.07);
-  transition: all 0.2s;
-  position: relative;
-  overflow: hidden;
+  transition: all 0.2s; position: relative; overflow: hidden;
 }
 .wish-item:not(.fulfilled):hover {
   box-shadow: 0 6px 20px rgba(0,0,0,0.12);
   border-color: var(--gold);
   background: rgba(245,197,24,0.06);
 }
-.wish-actions {
-  display: flex;
-  flex-direction: column;
-  align-items: flex-end;
-  gap: 5px;
-  flex-shrink: 0;
-}
 .wish-img-wrap {
-  width: 72px; height: 72px;
-  flex-shrink: 0;
-  border-radius: 12px;
-  overflow: hidden;
-  background: #fff;
+  width: 72px; height: 72px; flex-shrink: 0;
+  border-radius: 12px; overflow: hidden; background: #fff;
   border: 2px solid rgba(0,0,0,0.08);
   display: flex; align-items: center; justify-content: center;
 }
 .wish-img-wrap img { width:100%; height:100%; object-fit:contain; padding:4px; }
 .wish-info { flex: 1; min-width: 0; overflow: hidden; }
 .wish-name {
-  font-size: 13px;
-  font-weight: 700;
-  color: var(--wood);
-  line-height: 1.3;
-  display: -webkit-box;
-  -webkit-line-clamp: 2;
-  -webkit-box-orient: vertical;
-  overflow: hidden;
+  font-size: 13px; font-weight: 700; color: var(--wood); line-height: 1.3;
+  display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden;
 }
 .wish-shop { font-size: 11px; color: #aaa; margin-top: 3px; font-weight: 600; }
-.wish-price {
-  font-family: 'Pirata One', cursive;
-  font-size: 16px;
-  color: var(--teal-dark);
-  white-space: nowrap;
-  text-align: right;
-}
+.wish-actions { display: flex; flex-direction: column; align-items: flex-end; gap: 5px; flex-shrink: 0; }
+.wish-price { font-family: 'Pirata One', cursive; font-size: 16px; color: var(--teal-dark); white-space: nowrap; text-align: right; }
 .wish-cta {
-  background: var(--gold);
-  color: var(--wood);
-  border-radius: 8px;
-  padding: 4px 10px;
-  font-family: 'Boogaloo', cursive;
-  font-size: 12px;
-  font-weight: 700;
-  white-space: nowrap;
+  background: var(--gold); color: var(--wood);
+  border-radius: 8px; padding: 4px 10px;
+  font-family: 'Boogaloo', cursive; font-size: 12px; font-weight: 700; white-space: nowrap;
 }
-
-/* Erfüllter Wunsch */
-.wish-item.fulfilled {
-  opacity: 0.45;
-  pointer-events: none;
-  filter: grayscale(0.7);
-}
-.wish-item.fulfilled .wish-cta {
-  display: none;
-}
+.wish-item.fulfilled { opacity: 0.45; pointer-events: none; filter: grayscale(0.7); }
+.wish-item.fulfilled .wish-cta { display: none; }
 .wish-fulfilled-badge {
-  background: #2d6a4f;
-  color: #fff;
-  border-radius: 8px;
-  padding: 4px 10px;
-  font-family: 'Boogaloo', cursive;
-  font-size: 12px;
-  font-weight: 700;
-  white-space: nowrap;
-}
-.wish-actions {
-  display: flex;
-  gap: 6px;
-  align-items: center;
-  flex-shrink: 0;
+  background: #2d6a4f; color: #fff;
+  border-radius: 8px; padding: 4px 10px;
+  font-family: 'Boogaloo', cursive; font-size: 12px; font-weight: 700; white-space: nowrap;
 }
 .wish-mark-btn {
-  background: rgba(0,0,0,0.07);
-  border: none;
-  border-radius: 8px;
-  padding: 4px 8px;
-  font-size: 16px;
-  cursor: pointer;
-  transition: background 0.2s;
-  line-height: 1;
+  background: rgba(0,0,0,0.07); border: none;
+  border-radius: 8px; padding: 4px 8px;
+  font-size: 16px; cursor: pointer; transition: background 0.2s; line-height: 1;
 }
 .wish-mark-btn:hover { background: rgba(0,168,150,0.15); }
-.wish-item.fulfilled .wish-mark-btn {
-  pointer-events: all;  /* Rückgängig immer möglich */
-  opacity: 1;
-  filter: none;
-}
-
-/* ── FOOTER ── */
+.wish-item.fulfilled .wish-mark-btn { pointer-events: all; opacity: 1; filter: none; }
 .footer {
   background: linear-gradient(180deg, transparent, rgba(0,0,0,0.7));
-  padding: 40px 20px 50px;
-  text-align: center;
-  position: relative;
-  z-index: 10;
+  padding: 40px 20px 50px; text-align: center;
+  position: relative; z-index: 10;
 }
 .footer-skull { font-size: 48px; display:block; margin-bottom: 12px; }
-.footer p {
-  color: rgba(255,255,255,0.7);
-  font-size: 14px;
-  line-height: 1.7;
-}
+.footer p { color: rgba(255,255,255,0.7); font-size: 14px; line-height: 1.7; }
 .footer strong { color: var(--gold); }
-.footer-flag {
-  margin-top: 20px;
-  font-size: 32px;
-  opacity: 0.5;
-  letter-spacing: 8px;
-}
-
-/* ── TOAST ── */
+.footer-flag { margin-top: 20px; font-size: 32px; opacity: 0.5; letter-spacing: 8px; }
 .toast {
-  position: fixed;
-  bottom: 28px; left: 50%;
+  position: fixed; bottom: 28px; left: 50%;
   transform: translateX(-50%) translateY(80px);
-  background: var(--wood);
-  color: var(--gold);
-  padding: 12px 24px;
-  border-radius: 50px;
-  font-family: 'Boogaloo', cursive;
-  font-size: 16px;
-  z-index: 999;
-  transition: transform 0.4s cubic-bezier(.34,1.56,.64,1);
-  white-space: nowrap;
-  box-shadow: 0 6px 24px rgba(0,0,0,0.4);
+  background: var(--wood); color: var(--gold);
+  padding: 12px 24px; border-radius: 50px;
+  font-family: 'Boogaloo', cursive; font-size: 16px;
+  z-index: 999; transition: transform 0.4s cubic-bezier(.34,1.56,.64,1);
+  white-space: nowrap; box-shadow: 0 6px 24px rgba(0,0,0,0.4);
   border: 2px solid var(--gold-dark);
 }
 .toast.show { transform: translateX(-50%) translateY(0); }
-
-/* ── SCROLL ANIMATIONS ── */
-.reveal {
-  opacity: 0;
-  transform: translateY(30px);
-  transition: opacity 0.6s ease, transform 0.6s ease;
-}
+.reveal { opacity: 0; transform: translateY(30px); transition: opacity 0.6s ease, transform 0.6s ease; }
 .reveal.in-view { opacity:1; transform:translateY(0); }
-
 </style>
 </head>
 <body>
 
-<!-- ════════════════════════════════════════
-     ANIMATED CANVAS BACKGROUND
-════════════════════════════════════════ -->
 <canvas id="bgCanvas"></canvas>
 
-<!-- ════════════════════════════════════════
-     INTRO SCREEN
-════════════════════════════════════════ -->
 <div id="intro">
   <div class="intro-rope intro-rope-top"></div>
   <div class="intro-lightning"></div>
-
   <div class="intro-skull">☠️</div>
-
   <div class="intro-title-wrap">
     <div class="intro-ahoi">✦ Ahoi! ✦</div>
     <div class="intro-name">THEOS<br>PIRATEN<br>PARTY</div>
     <div class="intro-sub">Theo wird 5 Jahre alt!</div>
   </div>
-
   <div class="intro-bar-wrap">
     <div class="intro-bar-label">⚓ Kurs wird gesetzt…</div>
     <div class="intro-bar-track"><div class="intro-bar-fill" id="introBar"></div></div>
-    <div class="intro-skip" style="margin-top:14px">Tippen zum Überspringen</div>
+    <div class="intro-skip">Tippen zum Überspringen</div>
   </div>
-
   <div class="intro-rope intro-rope-bottom"></div>
 </div>
 
-<!-- ════════════════════════════════════════
-     MAIN CONTENT
-════════════════════════════════════════ -->
 <div id="main">
 
-  <!-- HERO -->
   <section class="hero">
-    <div class="hero-flag-bar"></div>
-
     <div class="main-pirate-wrap">
-      <img src="pirate.png"
-           alt="Käptn Theo"
+      <img src="pirate.png" alt="Käptn Theo"
            onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
       <div class="pirate-placeholder" style="display:none">
         <span class="ph-icon">🏴‍☠️</span>
-        <div class="ph-text">Lade <strong>pirate.png</strong><br>ins Git-Repo hoch</div>
+        <div class="ph-text">Lade <strong>pirate.png</strong><br>ins Repo hoch</div>
       </div>
     </div>
-
     <div class="hero-title-wrap">
       <div class="hero-eyebrow">☠️ Große Geburtstags-Expedition ☠️</div>
       <h1 class="hero-title">
@@ -815,17 +488,14 @@ body {
         Party
       </h1>
     </div>
-
     <div class="scroll-hint">
       <span class="scroll-arrow">⬇</span>
       <span>Kurs halten</span>
     </div>
   </section>
 
-  <!-- INFO CARD -->
   <div class="section-wrap">
-    <div class="rope-divider"></div>
-    <br>
+    <div class="rope-divider"></div><br>
     <div class="card reveal">
       <div class="card-header">
         <span class="card-header-icon">📜</span>
@@ -858,10 +528,8 @@ body {
     </div>
   </div>
 
-  <!-- RSVP -->
   <div class="section-wrap">
-    <div class="rope-divider"></div>
-    <br>
+    <div class="rope-divider"></div><br>
     <div class="card reveal">
       <div class="card-header">
         <span class="card-header-icon">⚓</span>
@@ -888,10 +556,8 @@ body {
     </div>
   </div>
 
-  <!-- WISHLIST -->
   <div class="section-wrap">
-    <div class="rope-divider"></div>
-    <br>
+    <div class="rope-divider"></div><br>
     <div class="card reveal">
       <div class="card-header">
         <span class="card-header-icon">🎁</span>
@@ -910,479 +576,199 @@ body {
     </div>
   </div>
 
-  <!-- FOOTER -->
   <div class="footer">
     <span class="footer-skull">🏴‍☠️</span>
     <p>Wir freuen uns auf eine<br><strong>wunderschöne Piraten-Feier</strong><br>mit euch allen!</p>
     <div class="footer-flag">⚓ ☠️ ⚓</div>
   </div>
 
-</div><!-- /#main -->
+</div>
 
 <div class="toast" id="toast"></div>
 
-<!-- ════════════════════════════════════════
-     SCRIPTS
-════════════════════════════════════════ -->
 <script>
-/* ────────────────────────────────────────
-   CANVAS OCEAN SCENE
-──────────────────────────────────────── */
+/* ── CANVAS ── */
 const canvas = document.getElementById('bgCanvas');
 const ctx    = canvas.getContext('2d');
 let W, H, t = 0;
-
-function resize() {
-  W = canvas.width  = window.innerWidth;
-  H = canvas.height = window.innerHeight;
-}
+function resize() { W = canvas.width = window.innerWidth; H = canvas.height = window.innerHeight; }
 resize();
 window.addEventListener('resize', resize);
 
-/* Stars */
-const stars = Array.from({length:80}, ()=>({
-  x: Math.random(), y: Math.random()*0.55,
-  r: Math.random()*1.5+0.4,
-  phase: Math.random()*Math.PI*2,
-  speed: 0.8+Math.random()*1.5,
-}));
-
-/* Clouds */
-const clouds = Array.from({length:6}, (_, i)=>({
-  x: Math.random(),
-  y: 0.04 + Math.random()*0.22,
-  w: 0.18 + Math.random()*0.22,
-  h: 0.05 + Math.random()*0.07,
-  speed: 0.000012 + Math.random()*0.000015,
-  alpha: 0.25 + Math.random()*0.35,
-}));
-
-/* Ships */
-const ships = [
-  { x: -0.3, y: 0.68, speed:  0.00014, scale: 1.0,  flip: false, bobAmp: 3, bobSpeed: 0.8  },
-  { x:  1.4, y: 0.74, speed: -0.00009, scale: 0.65, flip: true,  bobAmp: 2, bobSpeed: 1.1  },
-  { x:  0.6, y: 0.60, speed:  0.00006, scale: 0.4,  flip: false, bobAmp: 1.5, bobSpeed: 1.4 },
+const stars  = Array.from({length:80}, ()=>({ x:Math.random(), y:Math.random()*0.55, r:Math.random()*1.5+0.4, phase:Math.random()*Math.PI*2, speed:0.8+Math.random()*1.5 }));
+const clouds = Array.from({length:6},  ()=>({ x:Math.random(), y:0.04+Math.random()*0.22, w:0.18+Math.random()*0.22, speed:0.000012+Math.random()*0.000015, alpha:0.25+Math.random()*0.35 }));
+const ships  = [
+  { x:-0.3, y:0.68, speed:0.00014,  scale:1.0,  flip:false, bobAmp:3,   bobSpeed:0.8 },
+  { x:1.4,  y:0.74, speed:-0.00009, scale:0.65, flip:true,  bobAmp:2,   bobSpeed:1.1 },
+  { x:0.6,  y:0.60, speed:0.00006,  scale:0.4,  flip:false, bobAmp:1.5, bobSpeed:1.4 },
 ];
-
-/* Seagulls */
-const gulls = Array.from({length:4}, ()=>({
-  x: Math.random(),
-  y: 0.12 + Math.random()*0.2,
-  speed: 0.00015 + Math.random()*0.0001,
-  scale: 0.5 + Math.random()*0.5,
-  phase: Math.random()*Math.PI*2,
-  wingSpeed: 4 + Math.random()*4,
-}));
+const gulls = Array.from({length:4}, ()=>({ x:Math.random(), y:0.12+Math.random()*0.2, speed:0.00015+Math.random()*0.0001, scale:0.5+Math.random()*0.5, phase:Math.random()*Math.PI*2, wingSpeed:4+Math.random()*4 }));
 
 function drawShip(sx, sy, scale, flipped) {
   ctx.save();
   ctx.translate(sx, sy);
   if(flipped) ctx.scale(-1,1);
   ctx.scale(scale, scale);
-
-  const shadow = 0.35;
-
-  /* Water line shadow */
-  ctx.beginPath();
-  ctx.ellipse(0, 60, 90*scale, 10, 0, 0, Math.PI*2);
-  ctx.fillStyle = 'rgba(0,40,40,0.25)';
-  ctx.fill();
-
-  /* Hull bottom */
-  ctx.beginPath();
-  ctx.moveTo(-90, 45);
-  ctx.quadraticCurveTo(0, 75, 90, 45);
-  ctx.lineTo(80, 20);
-  ctx.lineTo(-80, 20);
-  ctx.closePath();
-  ctx.fillStyle = '#2a1105';
-  ctx.fill();
-
-  /* Hull upper */
-  ctx.beginPath();
-  ctx.moveTo(-80, 20);
-  ctx.lineTo(80, 20);
-  ctx.lineTo(72, -5);
-  ctx.lineTo(-72, -5);
-  ctx.closePath();
-  ctx.fillStyle = '#4a2010';
-  ctx.fill();
-
-  /* Gold stripe */
-  ctx.beginPath();
-  ctx.moveTo(-76, 7);
-  ctx.lineTo(76, 7);
-  ctx.lineWidth = 4;
-  ctx.strokeStyle = 'rgba(200,155,10,0.7)';
-  ctx.stroke();
-
-  /* Port holes */
-  [-40,-0,40].forEach(px => {
-    ctx.beginPath();
-    ctx.arc(px, 8, 7, 0, Math.PI*2);
-    ctx.fillStyle = '#111';
-    ctx.fill();
-    ctx.strokeStyle = 'rgba(200,155,10,0.6)';
-    ctx.lineWidth = 2;
-    ctx.stroke();
+  ctx.beginPath(); ctx.ellipse(0,60,90*scale,10,0,0,Math.PI*2); ctx.fillStyle='rgba(0,40,40,0.25)'; ctx.fill();
+  ctx.beginPath(); ctx.moveTo(-90,45); ctx.quadraticCurveTo(0,75,90,45); ctx.lineTo(80,20); ctx.lineTo(-80,20); ctx.closePath(); ctx.fillStyle='#2a1105'; ctx.fill();
+  ctx.beginPath(); ctx.moveTo(-80,20); ctx.lineTo(80,20); ctx.lineTo(72,-5); ctx.lineTo(-72,-5); ctx.closePath(); ctx.fillStyle='#4a2010'; ctx.fill();
+  ctx.beginPath(); ctx.moveTo(-76,7); ctx.lineTo(76,7); ctx.lineWidth=4; ctx.strokeStyle='rgba(200,155,10,0.7)'; ctx.stroke();
+  [-40,0,40].forEach(px=>{ ctx.beginPath(); ctx.arc(px,8,7,0,Math.PI*2); ctx.fillStyle='#111'; ctx.fill(); ctx.strokeStyle='rgba(200,155,10,0.6)'; ctx.lineWidth=2; ctx.stroke(); });
+  ctx.beginPath(); ctx.moveTo(-72,0); ctx.lineTo(-115,-22); ctx.lineWidth=5; ctx.strokeStyle='#5c3317'; ctx.stroke();
+  const masts=[{x:-30,bot:-5,top:-115,sailL:-30,sailR:10,sailT:-112,sailB:-30},{x:15,bot:-5,top:-135,sailL:15,sailR:60,sailT:-130,sailB:-25},{x:55,bot:-5,top:-100,sailL:55,sailR:88,sailT:-96,sailB:-25}];
+  masts.forEach((m,i)=>{
+    ctx.beginPath(); ctx.moveTo(m.x,m.bot); ctx.lineTo(m.x,m.top); ctx.lineWidth=6-i; ctx.strokeStyle='#5c3317'; ctx.stroke();
+    const armY=m.top+20,armW=(m.sailR-m.sailL)*0.8;
+    ctx.beginPath(); ctx.moveTo(m.x-armW/2,armY); ctx.lineTo(m.x+armW/2,armY); ctx.lineWidth=3; ctx.strokeStyle='#5c3317'; ctx.stroke();
+    ctx.beginPath(); ctx.moveTo(m.sailL,m.sailT+20); ctx.quadraticCurveTo(m.sailR+15,(m.sailT+m.sailB)/2,m.sailL,m.sailB); ctx.lineTo(m.sailR-5,m.sailB); ctx.quadraticCurveTo(m.sailR+20,(m.sailT+m.sailB)/2,m.sailR-5,m.sailT+20); ctx.closePath();
+    ctx.fillStyle=`rgba(240,225,190,${0.85-i*0.05})`; ctx.fill(); ctx.strokeStyle='rgba(0,0,0,0.1)'; ctx.lineWidth=1; ctx.stroke();
+    ctx.save(); ctx.clip(); for(let s=0;s<4;s++){ctx.beginPath();ctx.moveTo(m.sailL+s*((m.sailR-m.sailL)/3.5),m.sailT+20);ctx.lineTo(m.sailL+s*((m.sailR-m.sailL)/3.5),m.sailB);ctx.strokeStyle='rgba(0,0,0,0.08)';ctx.lineWidth=1;ctx.stroke();} ctx.restore();
   });
-
-  /* Bowsprit */
-  ctx.beginPath();
-  ctx.moveTo(-72, 0);
-  ctx.lineTo(-115, -22);
-  ctx.lineWidth = 5;
-  ctx.strokeStyle = '#5c3317';
-  ctx.stroke();
-
-  /* Mast positions */
-  const masts = [
-    { x: -30, bot: -5, top: -115, sailL: -30, sailR: 10,  sailT: -112, sailB: -30 },
-    { x:  15, bot: -5, top: -135, sailL:  15, sailR: 60,  sailT: -130, sailB: -25 },
-    { x:  55, bot: -5, top: -100, sailL:  55, sailR: 88,  sailT: -96,  sailB: -25 },
-  ];
-  masts.forEach((m, i) => {
-    /* Mast */
-    ctx.beginPath();
-    ctx.moveTo(m.x, m.bot);
-    ctx.lineTo(m.x, m.top);
-    ctx.lineWidth = 6 - i;
-    ctx.strokeStyle = '#5c3317';
-    ctx.stroke();
-
-    /* Yard arm */
-    const armY = m.top + 20;
-    const armW = (m.sailR - m.sailL)*0.8;
-    ctx.beginPath();
-    ctx.moveTo(m.x - armW/2, armY);
-    ctx.lineTo(m.x + armW/2, armY);
-    ctx.lineWidth = 3;
-    ctx.strokeStyle = '#5c3317';
-    ctx.stroke();
-
-    /* Sail */
-    const sailAlpha = 0.85 - i*0.05;
-    ctx.beginPath();
-    ctx.moveTo(m.sailL, m.sailT + 20);
-    ctx.quadraticCurveTo(m.sailR + 15, (m.sailT+m.sailB)/2, m.sailL, m.sailB);
-    ctx.lineTo(m.sailR - 5, m.sailB);
-    ctx.quadraticCurveTo(m.sailR + 20, (m.sailT+m.sailB)/2, m.sailR - 5, m.sailT + 20);
-    ctx.closePath();
-    ctx.fillStyle = `rgba(240,225,190,${sailAlpha})`;
-    ctx.fill();
-    ctx.strokeStyle = 'rgba(0,0,0,0.1)';
-    ctx.lineWidth = 1;
-    ctx.stroke();
-
-    /* Sail stripes */
-    ctx.save();
-    ctx.clip();
-    for(let s=0; s<4; s++) {
-      ctx.beginPath();
-      ctx.moveTo(m.sailL + s*((m.sailR-m.sailL)/3.5), m.sailT+20);
-      ctx.lineTo(m.sailL + s*((m.sailR-m.sailL)/3.5), m.sailB);
-      ctx.strokeStyle = 'rgba(0,0,0,0.08)';
-      ctx.lineWidth = 1;
-      ctx.stroke();
-    }
-    ctx.restore();
-  });
-
-  /* Skull flag on main mast */
-  ctx.fillStyle = '#111';
-  ctx.fillRect(15, -148, 28, 18);
-  ctx.font = '14px serif';
-  ctx.fillStyle = '#fff';
-  ctx.fillText('☠', 17, -134);
-
-  /* Rope lines */
-  ctx.beginPath();
-  ctx.moveTo(-115,-22); ctx.lineTo(-30,-110);
-  ctx.moveTo(-30,-110); ctx.lineTo(15,-130);
-  ctx.moveTo(15,-130);  ctx.lineTo(55,-100);
-  ctx.lineWidth = 1.5;
-  ctx.strokeStyle = 'rgba(92,51,23,0.6)';
-  ctx.stroke();
-
+  ctx.fillStyle='#111'; ctx.fillRect(15,-148,28,18);
+  ctx.font='14px serif'; ctx.fillStyle='#fff'; ctx.fillText('☠',17,-134);
+  ctx.beginPath(); ctx.moveTo(-115,-22); ctx.lineTo(-30,-110); ctx.moveTo(-30,-110); ctx.lineTo(15,-130); ctx.moveTo(15,-130); ctx.lineTo(55,-100); ctx.lineWidth=1.5; ctx.strokeStyle='rgba(92,51,23,0.6)'; ctx.stroke();
   ctx.restore();
 }
 
-function drawGull(x, y, scale, wingAngle) {
-  ctx.save();
-  ctx.translate(x, y);
-  ctx.scale(scale, scale);
-  const wy = Math.sin(wingAngle) * 6;
-  ctx.beginPath();
-  ctx.moveTo(-14, 0);
-  ctx.quadraticCurveTo(-7, wy, 0, 0);
-  ctx.quadraticCurveTo(7, wy, 14, 0);
-  ctx.lineWidth = 2;
-  ctx.strokeStyle = 'rgba(255,255,255,0.7)';
-  ctx.stroke();
+function drawGull(x,y,scale,wingAngle) {
+  ctx.save(); ctx.translate(x,y); ctx.scale(scale,scale);
+  const wy=Math.sin(wingAngle)*6;
+  ctx.beginPath(); ctx.moveTo(-14,0); ctx.quadraticCurveTo(-7,wy,0,0); ctx.quadraticCurveTo(7,wy,14,0); ctx.lineWidth=2; ctx.strokeStyle='rgba(255,255,255,0.7)'; ctx.stroke();
   ctx.restore();
 }
 
-function drawWave(yBase, amp, freq, phase, color, alpha) {
+function drawWave(yBase,amp,freq,phase,color,alpha) {
   ctx.beginPath();
-  ctx.moveTo(0, H);
-  for(let x=0; x<=W; x+=4) {
-    const y = yBase + Math.sin((x/W)*freq*Math.PI*2 + phase)*amp
-                   + Math.sin((x/W)*freq*1.7*Math.PI*2 + phase*1.3)*amp*0.4;
-    if(x===0) ctx.moveTo(x, y);
-    else ctx.lineTo(x, y);
-  }
-  ctx.lineTo(W, H); ctx.lineTo(0, H);
-  ctx.closePath();
-  ctx.fillStyle = color;
-  ctx.globalAlpha = alpha;
-  ctx.fill();
-  ctx.globalAlpha = 1;
+  for(let x=0;x<=W;x+=4){const y=yBase+Math.sin((x/W)*freq*Math.PI*2+phase)*amp+Math.sin((x/W)*freq*1.7*Math.PI*2+phase*1.3)*amp*0.4;x===0?ctx.moveTo(x,y):ctx.lineTo(x,y);}
+  ctx.lineTo(W,H);ctx.lineTo(0,H);ctx.closePath();ctx.fillStyle=color;ctx.globalAlpha=alpha;ctx.fill();ctx.globalAlpha=1;
 }
 
 function draw() {
-  t += 0.008;
-  ctx.clearRect(0,0,W,H);
-
-  /* Sky gradient */
-  const sky = ctx.createLinearGradient(0,0,0,H*0.65);
-  sky.addColorStop(0,   '#051520');
-  sky.addColorStop(0.3, '#073035');
-  sky.addColorStop(0.7, '#0A5A5A');
-  sky.addColorStop(1,   '#0D8A80');
-  ctx.fillStyle = sky;
-  ctx.fillRect(0,0,W,H);
-
-  /* Moon */
-  const moonX = W*0.82, moonY = H*0.1;
-  const moonGlow = ctx.createRadialGradient(moonX,moonY,0,moonX,moonY,80);
-  moonGlow.addColorStop(0, 'rgba(245,220,100,0.25)');
-  moonGlow.addColorStop(1, 'transparent');
-  ctx.fillStyle = moonGlow;
-  ctx.fillRect(0,0,W,H);
-  ctx.beginPath();
-  ctx.arc(moonX, moonY, 24, 0, Math.PI*2);
-  ctx.fillStyle = '#FFF5C0';
-  ctx.fill();
-  ctx.beginPath();
-  ctx.arc(moonX-7, moonY-5, 22, 0, Math.PI*2);
-  ctx.fillStyle = '#073035';
-  ctx.fill();
-
-  /* Stars */
-  stars.forEach(s => {
-    const a = 0.4 + 0.6*Math.sin(t*s.speed + s.phase);
-    ctx.beginPath();
-    ctx.arc(s.x*W, s.y*H, s.r, 0, Math.PI*2);
-    ctx.fillStyle = `rgba(255,255,240,${a})`;
-    ctx.fill();
-  });
-
-  /* Clouds */
-  clouds.forEach(c => {
-    c.x += c.speed;
-    if(c.x > 1.3) c.x = -0.3;
-    const cg = ctx.createRadialGradient(c.x*W, c.y*H, 0, c.x*W, c.y*H, c.w*W);
-    cg.addColorStop(0, `rgba(200,230,230,${c.alpha})`);
-    cg.addColorStop(1, 'transparent');
-    ctx.fillStyle = cg;
-    ctx.fillRect(0,0,W,H);
-  });
-
-  /* Ocean backdrop */
-  const ocean = ctx.createLinearGradient(0, H*0.55, 0, H);
-  ocean.addColorStop(0, '#0D7A72');
-  ocean.addColorStop(0.5, '#006060');
-  ocean.addColorStop(1,   '#003838');
-  ctx.fillStyle = ocean;
-  ctx.fillRect(0, H*0.55, W, H*0.45);
-
-  /* Ships */
-  ships.forEach(s => {
-    s.x += s.speed;
-    if(s.speed > 0 && s.x > 1.4) s.x = -0.35;
-    if(s.speed < 0 && s.x < -0.35) s.x = 1.4;
-    const bob = Math.sin(t*s.bobSpeed)*s.bobAmp;
-    drawShip(s.x*W, s.y*H + bob, s.scale, s.flip);
-  });
-
-  /* Animated waves (layered) */
-  drawWave(H*0.62, 14, 2.5, t*0.8,  '#0A8A82', 0.7);
-  drawWave(H*0.65, 10, 3.0, t*1.1+1,'#0D9A90', 0.8);
-  drawWave(H*0.68, 7,  4.0, t*1.4+2,'#12B0A6', 0.85);
-  drawWave(H*0.71, 5,  5.0, t*1.7+3,'#15B8AE', 0.9);
-
-  /* Foam caps on wave tops */
-  for(let i=0; i<W; i+=40) {
-    const wavey = H*0.68 + Math.sin((i/W)*4*Math.PI*2 + t*1.4+2)*7;
-    ctx.beginPath();
-    ctx.ellipse(i + Math.sin(t*2+i)*5, wavey-2, 10+Math.sin(t+i)*4, 3, 0, 0, Math.PI*2);
-    ctx.fillStyle = 'rgba(255,255,255,0.25)';
-    ctx.fill();
-  }
-
-  /* Foreground deep water */
-  drawWave(H*0.78, 6, 2.0, t*0.5, '#007A72', 1.0);
-  drawWave(H*0.82, 4, 3.0, t*0.7, '#006868', 1.0);
-  drawWave(H*0.87, 3, 2.5, t*0.6, '#004A45', 1.0);
-
-  /* Seagulls */
-  gulls.forEach(g => {
-    g.x += g.speed;
-    if(g.x > 1.1) g.x = -0.1;
-    g.phase += 0.04;
-    drawGull(g.x*W, g.y*H + Math.sin(g.phase)*4, g.scale, g.phase*g.wingSpeed);
-  });
-
+  t+=0.008; ctx.clearRect(0,0,W,H);
+  const sky=ctx.createLinearGradient(0,0,0,H*0.65);
+  sky.addColorStop(0,'#051520');sky.addColorStop(0.3,'#073035');sky.addColorStop(0.7,'#0A5A5A');sky.addColorStop(1,'#0D8A80');
+  ctx.fillStyle=sky; ctx.fillRect(0,0,W,H);
+  const moonX=W*0.82,moonY=H*0.1,moonGlow=ctx.createRadialGradient(moonX,moonY,0,moonX,moonY,80);
+  moonGlow.addColorStop(0,'rgba(245,220,100,0.25)');moonGlow.addColorStop(1,'transparent');ctx.fillStyle=moonGlow;ctx.fillRect(0,0,W,H);
+  ctx.beginPath();ctx.arc(moonX,moonY,24,0,Math.PI*2);ctx.fillStyle='#FFF5C0';ctx.fill();
+  ctx.beginPath();ctx.arc(moonX-7,moonY-5,22,0,Math.PI*2);ctx.fillStyle='#073035';ctx.fill();
+  stars.forEach(s=>{const a=0.4+0.6*Math.sin(t*s.speed+s.phase);ctx.beginPath();ctx.arc(s.x*W,s.y*H,s.r,0,Math.PI*2);ctx.fillStyle=`rgba(255,255,240,${a})`;ctx.fill();});
+  clouds.forEach(c=>{c.x+=c.speed;if(c.x>1.3)c.x=-0.3;const cg=ctx.createRadialGradient(c.x*W,c.y*H,0,c.x*W,c.y*H,c.w*W);cg.addColorStop(0,`rgba(200,230,230,${c.alpha})`);cg.addColorStop(1,'transparent');ctx.fillStyle=cg;ctx.fillRect(0,0,W,H);});
+  const ocean=ctx.createLinearGradient(0,H*0.55,0,H);ocean.addColorStop(0,'#0D7A72');ocean.addColorStop(0.5,'#006060');ocean.addColorStop(1,'#003838');ctx.fillStyle=ocean;ctx.fillRect(0,H*0.55,W,H*0.45);
+  ships.forEach(s=>{s.x+=s.speed;if(s.speed>0&&s.x>1.4)s.x=-0.35;if(s.speed<0&&s.x<-0.35)s.x=1.4;drawShip(s.x*W,s.y*H+Math.sin(t*s.bobSpeed)*s.bobAmp,s.scale,s.flip);});
+  drawWave(H*0.62,14,2.5,t*0.8,'#0A8A82',0.7);drawWave(H*0.65,10,3.0,t*1.1+1,'#0D9A90',0.8);drawWave(H*0.68,7,4.0,t*1.4+2,'#12B0A6',0.85);drawWave(H*0.71,5,5.0,t*1.7+3,'#15B8AE',0.9);
+  for(let i=0;i<W;i+=40){const wavey=H*0.68+Math.sin((i/W)*4*Math.PI*2+t*1.4+2)*7;ctx.beginPath();ctx.ellipse(i+Math.sin(t*2+i)*5,wavey-2,10+Math.sin(t+i)*4,3,0,0,Math.PI*2);ctx.fillStyle='rgba(255,255,255,0.25)';ctx.fill();}
+  drawWave(H*0.78,6,2.0,t*0.5,'#007A72',1.0);drawWave(H*0.82,4,3.0,t*0.7,'#006868',1.0);drawWave(H*0.87,3,2.5,t*0.6,'#004A45',1.0);
+  gulls.forEach(g=>{g.x+=g.speed;if(g.x>1.1)g.x=-0.1;g.phase+=0.04;drawGull(g.x*W,g.y*H+Math.sin(g.phase)*4,g.scale,g.phase*g.wingSpeed);});
   requestAnimationFrame(draw);
 }
 draw();
 
-/* ────────────────────────────────────────
-   INTRO LOGIC
-──────────────────────────────────────── */
+/* ── INTRO ── */
 const INTRO_DUR = 5000;
-const introEl  = document.getElementById('intro');
-const mainEl   = document.getElementById('main');
-const barFill  = document.getElementById('introBar');
-let   startTs  = null, done = false;
+const introEl = document.getElementById('intro');
+const mainEl  = document.getElementById('main');
+const barFill = document.getElementById('introBar');
+let startTs = null, done = false;
 
 function goMain() {
-  if(done) return;
-  done = true;
+  if(done) return; done = true;
   introEl.classList.add('gone');
-  setTimeout(() => {
-    introEl.style.display = 'none';
-    mainEl.classList.add('visible');
-    setupScrollReveal();
-  }, 1000);
+  setTimeout(()=>{ introEl.style.display='none'; mainEl.classList.add('visible'); setupScrollReveal(); }, 1000);
 }
-
 function introTick(ts) {
-  if(!startTs) startTs = ts;
-  const pct = Math.min(100, ((ts-startTs)/INTRO_DUR)*100);
-  barFill.style.width = pct + '%';
-  if(pct < 100) requestAnimationFrame(introTick);
-  else goMain();
+  if(!startTs) startTs=ts;
+  const pct=Math.min(100,((ts-startTs)/INTRO_DUR)*100);
+  barFill.style.width=pct+'%';
+  if(pct<100) requestAnimationFrame(introTick); else goMain();
 }
 requestAnimationFrame(introTick);
 introEl.addEventListener('click', goMain);
 introEl.addEventListener('touchstart', goMain, {passive:true});
 
-/* ────────────────────────────────────────
-   SCROLL REVEAL
-──────────────────────────────────────── */
+/* ── SCROLL REVEAL ── */
 function setupScrollReveal() {
-  const els = document.querySelectorAll('.reveal');
-  const obs = new IntersectionObserver((entries) => {
-    entries.forEach(e => { if(e.isIntersecting) e.target.classList.add('in-view'); });
-  }, { threshold: 0.1 });
-  els.forEach(el => obs.observe(el));
+  const obs = new IntersectionObserver(entries=>entries.forEach(e=>{if(e.isIntersecting)e.target.classList.add('in-view');}),{threshold:0.1});
+  document.querySelectorAll('.reveal').forEach(el=>obs.observe(el));
 }
 
-/* ────────────────────────────────────────
-   DATA
-──────────────────────────────────────── */
+/* ── DATA ── */
 const CHILDREN = [
-  { id:'arthur', name:'Arthur', pirate:'Artur Rostmesser',    emoji:'⚓' },
-  { id:'ben',    name:'Ben',    pirate:'Ben Silbersäbel',      emoji:'🗡️' },
-  { id:'lukas',  name:'Lukas',  pirate:'Luki der Seeräuber',  emoji:'🦜' },
-  { id:'maxi',   name:'Maxi',   pirate:'Max Goldzahn',         emoji:'🐙' },
-  { id:'maks',   name:'Maks',   pirate:'Maks Seelöwe', emoji:'🦈' },
-  { id:'timo',   name:'Timo',   pirate:'Timo Lausebart',        emoji:'💣' },
+  { id:'arthur', name:'Arthur', pirate:'Artur Rostmesser',   emoji:'⚓' },
+  { id:'ben',    name:'Ben',    pirate:'Ben Silbersäbel',     emoji:'🗡️' },
+  { id:'lukas',  name:'Lukas',  pirate:'Luki der Seeräuber', emoji:'🦜' },
+  { id:'maxi',   name:'Maxi',   pirate:'Max Goldzahn',        emoji:'🐙' },
+  { id:'maks',   name:'Maks',   pirate:'Maks Seelöwe',        emoji:'🦈' },
+  { id:'timo',   name:'Timo',   pirate:'Timo Lausebart',      emoji:'💣' },
 ];
 
 const WISHES = [
-  { id:'wish1', name:'Wieso? Weshalb? Warum? Stickerheft – Piraten', price:'€ 7,99',  shop:'amazon.de', img:'img/wish1.png', url:'https://www.amazon.de/dp/347332941X?tag=wunschliste0a-21&linkCode=osi&th=1&psc=1' },
-  { id:'wish2', name:'Der kleine Drache Kokosnuss – Die Piraten (Doppelband)', price:'€ 14,00', shop:'amazon.de', img:'img/wish2.png', url:'https://www.amazon.de/dp/3570181448?tag=wunschliste0a-21&linkCode=osi&th=1&psc=1' },
-  { id:'wish3', name:'Der kleine Drache Kokosnuss in Australien (Band 30)', price:'€ 10,00', shop:'amazon.de', img:'img/wish3.png', url:'https://www.amazon.de/dp/3570179761?tag=wunschliste0a-21&linkCode=osi&th=1&psc=1' },
-  { id:'wish4', name:'PAW PATROL – Ryder-Figur mit Quad-Rettungsfahrzeug', price:'€ 10,29', shop:'amazon.de', img:'img/wish4.png', url:'https://www.amazon.de/dp/B0DCBXNSRS?tag=wunschliste0a-21&linkCode=osi&th=1&psc=1' },
-  { id:'wish5', name:'SCHLEICH Dinosaurs – Ankylosaurus 15023', price:'€ 8,79',  shop:'amazon.de', img:'img/wish5.png', url:'https://www.amazon.de/dp/B07Y2V3NFX?tag=wunschliste0a-21&linkCode=osi&th=1&psc=1' },
-  { id:'wish6', name:'SCHLEICH Dinosaurs – Tyrannosaurus Rex 14525', price:'€ 14,99', shop:'amazon.de', img:'img/wish6.png', url:'https://www.amazon.de/dp/B0073RSVMC?tag=wunschliste0a-21&linkCode=osi&th=1&psc=1' },
+  { id:'wish1', name:'Wieso? Weshalb? Warum? Stickerheft – Piraten',         price:'€ 7,99',  shop:'amazon.de', img:'img/wish1.png', url:'https://www.amazon.de/dp/347332941X?tag=wunschliste0a-21&linkCode=osi&th=1&psc=1' },
+  { id:'wish2', name:'Der kleine Drache Kokosnuss – Die Piraten (Doppelband)',price:'€ 14,00', shop:'amazon.de', img:'img/wish2.png', url:'https://www.amazon.de/dp/3570181448?tag=wunschliste0a-21&linkCode=osi&th=1&psc=1' },
+  { id:'wish3', name:'Der kleine Drache Kokosnuss in Australien (Band 30)',   price:'€ 10,00', shop:'amazon.de', img:'img/wish3.png', url:'https://www.amazon.de/dp/3570179761?tag=wunschliste0a-21&linkCode=osi&th=1&psc=1' },
+  { id:'wish4', name:'PAW PATROL – Ryder-Figur mit Quad-Rettungsfahrzeug',   price:'€ 10,29', shop:'amazon.de', img:'img/wish4.png', url:'https://www.amazon.de/dp/B0DCBXNSRS?tag=wunschliste0a-21&linkCode=osi&th=1&psc=1' },
+  { id:'wish5', name:'SCHLEICH Dinosaurs – Ankylosaurus 15023',               price:'€ 8,79',  shop:'amazon.de', img:'img/wish5.png', url:'https://www.amazon.de/dp/B07Y2V3NFX?tag=wunschliste0a-21&linkCode=osi&th=1&psc=1' },
+  { id:'wish6', name:'SCHLEICH Dinosaurs – Tyrannosaurus Rex 14525',          price:'€ 14,99', shop:'amazon.de', img:'img/wish6.png', url:'https://www.amazon.de/dp/B0073RSVMC?tag=wunschliste0a-21&linkCode=osi&th=1&psc=1' },
 ];
 
-/* ────────────────────────────────────────
-   WISHLIST
-──────────────────────────────────────── */
-var _wishState = {}; // { wishId: true/false }
+/* ── WISHLIST ── */
+var _wishState = {};
 
 function renderWishes(fulfilled) {
-  if (fulfilled !== undefined) _wishState = fulfilled;
-  const list = document.getElementById('wishList');
+  if(fulfilled !== undefined) _wishState = fulfilled;
+  var list = document.getElementById('wishList');
   list.innerHTML = '';
   WISHES.forEach(function(w) {
-    const done = !!_wishState[w.id];
-    const div = document.createElement('div');
+    var done = !!_wishState[w.id];
+    var div = document.createElement('div');
     div.className = 'wish-item' + (done ? ' fulfilled' : '');
     div.innerHTML =
-      '<a href="' + (done ? '#' : w.url) + '" ' + (done ? '' : 'target="_blank" rel="noopener"') + ' style="display:flex;align-items:center;gap:12px;flex:1;text-decoration:none;color:inherit;min-width:0;overflow:hidden">' +
-        '<div class="wish-img-wrap"><img src="' + w.img + '" alt="' + w.name + '" loading="lazy"></div>' +
-        '<div class="wish-info">' +
-          '<div class="wish-name">' + w.name + '</div>' +
-          '<div class="wish-shop">🛍 ' + w.shop + '</div>' +
-        '</div>' +
+      '<a href="'+(done?'#':w.url)+'" '+(done?'':'target="_blank" rel="noopener"')+' style="display:flex;align-items:center;gap:12px;flex:1;text-decoration:none;color:inherit;min-width:0;overflow:hidden">' +
+        '<div class="wish-img-wrap"><img src="'+w.img+'" alt="'+w.name+'" loading="lazy"></div>' +
+        '<div class="wish-info"><div class="wish-name">'+w.name+'</div><div class="wish-shop">🛍 '+w.shop+'</div></div>' +
       '</a>' +
       '<div class="wish-actions">' +
-        '<div class="wish-price">' + w.price + '</div>' +
-        (done
-          ? '<div class="wish-fulfilled-badge">✅ Gekauft</div>'
-          : '<div class="wish-cta">Kaufen →</div>') +
-        '<button class="wish-mark-btn" data-wid="' + w.id + '" title="' + (done ? 'Markierung aufheben' : 'Als gekauft markieren') + '">' +
-          (done ? '↩️' : '🎁') +
-        '</button>' +
+        '<div class="wish-price">'+w.price+'</div>' +
+        (done ? '<div class="wish-fulfilled-badge">✅ Gekauft</div>' : '<div class="wish-cta">Kaufen →</div>') +
+        '<button class="wish-mark-btn" data-wid="'+w.id+'" title="'+(done?'Markierung aufheben':'Als gekauft markieren')+'">'+(done?'↩️':'🎁')+'</button>' +
       '</div>';
     list.appendChild(div);
   });
 }
 
 document.getElementById('wishList').addEventListener('click', function(e) {
-  const btn = e.target.closest('.wish-mark-btn');
-  if (!btn) return;
-  const wid = btn.dataset.wid;
+  var btn = e.target.closest('.wish-mark-btn');
+  if(!btn) return;
+  var wid = btn.dataset.wid;
   _wishState[wid] = !_wishState[wid];
   renderWishes();
   showToast(_wishState[wid] ? '🎁 Geschenk als gekauft markiert!' : '↩️ Markierung aufgehoben');
-  if (window._fbSaveWish) window._fbSaveWish(wid, !!_wishState[wid]);
+  if(window._fbSaveWish) window._fbSaveWish(wid, !!_wishState[wid]);
 });
 
-/* ────────────────────────────────────────
-   TOAST
-──────────────────────────────────────── */
-let toastTimer;
-function showToast(msg) {
-  const t = document.getElementById('toast');
-  t.textContent = msg;
-  t.classList.add('show');
-  clearTimeout(toastTimer);
-  toastTimer = setTimeout(()=>t.classList.remove('show'), 2800);
-}
-
-renderWishes();
-
-// ── RSVP: sofort rendern, Firebase aktualisiert live ──
-let _rsvpState = {};
+/* ── RSVP ── */
+var _rsvpState = {};
 
 function renderRsvp(incoming) {
-  if (incoming !== undefined) _rsvpState = incoming;
-  let yes=0, no=0, open=0;
-  const list = document.getElementById('rsvpList');
+  if(incoming !== undefined) _rsvpState = incoming;
+  var yes=0, no=0, open=0;
+  var list = document.getElementById('rsvpList');
   list.innerHTML = '';
-  CHILDREN.forEach(c => {
-    const s = _rsvpState[c.id];
+  CHILDREN.forEach(function(c) {
+    var s = _rsvpState[c.id];
     if(s==='yes') yes++; else if(s==='no') no++; else open++;
-    const div = document.createElement('div');
+    var div = document.createElement('div');
     div.className = 'rsvp-item';
     div.innerHTML =
       '<div class="rsvp-avatar">'+c.emoji+'</div>' +
       '<div class="rsvp-name-wrap">' +
         '<div class="rsvp-name">'+c.name+'</div>' +
         '<div style="font-size:11px;color:var(--teal-dark);font-weight:700;font-style:italic">🏴‍☠️ '+c.pirate+'</div>' +
-        '<div class="rsvp-status-text '+(s==='yes'?'status-yes':s==='no'?'status-no':'status-open')+'">' +
-          (s==='yes'?'⚓ An Bord!':s==='no'?'🌊 Absage':'– offen') +
-        '</div>' +
+        '<div class="rsvp-status-text '+(s==='yes'?'status-yes':s==='no'?'status-no':'status-open')+'">'+(s==='yes'?'⚓ An Bord!':s==='no'?'🌊 Absage':'– offen')+'</div>' +
       '</div>' +
       '<div class="rsvp-btns">' +
         '<button class="rsvp-btn btn-yes '+(s==='yes'?'active':'')+'" data-id="'+c.id+'" data-v="yes">✅ Ja</button>' +
-        '<button class="rsvp-btn btn-no '+(s==='no'?'active':'')+'"  data-id="'+c.id+'" data-v="no">❌ Nein</button>' +
+        '<button class="rsvp-btn btn-no '+(s==='no'?'active':'')+'" data-id="'+c.id+'" data-v="no">❌ Nein</button>' +
       '</div>';
     list.appendChild(div);
   });
@@ -1401,41 +787,60 @@ document.getElementById('rsvpList').addEventListener('click', function(e) {
   if(window._fbSave) window._fbSave(id, val);
 });
 
-renderRsvp(); // sofort – Kinder immer sichtbar
+/* ── TOAST ── */
+var toastTimer;
+function showToast(msg) {
+  var t = document.getElementById('toast');
+  t.textContent = msg; t.classList.add('show');
+  clearTimeout(toastTimer);
+  toastTimer = setTimeout(function(){ t.classList.remove('show'); }, 2800);
+}
+
+/* ── INIT ── */
+renderWishes();
+renderRsvp();
 </script>
 
-<!-- Firebase Compat SDK -->
-<script src="https://www.gstatic.com/firebasejs/10.12.0/firebase-app-compat.js"></script>
-<script src="https://www.gstatic.com/firebasejs/10.12.0/firebase-firestore-compat.js"></script>
+<!-- ════ FIREBASE v9 COMPAT SDK ════
+     v9 ist die letzte Version mit Compat-Unterstützung für Plain-HTML.
+     v10 hat KEIN firebase-app-compat.js mehr — daher v9.23.0 fixiert.      -->
+<script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-app-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-firestore-compat.js"></script>
 <script src="src/firebase-config.js"></script>
 <script>
-// 🔧 HIER deine Firebase-Config eintragen:
-// console.firebase.google.com → Projekt → ⚙️ → Projekt-Einstellungen → Web-App
-// firebaseConfig wird aus src/firebase-config.js geladen
 try {
   firebase.initializeApp(firebaseConfig);
-  var db       = firebase.firestore();
-  var col      = db.collection('rsvp');
-  var wishCol  = db.collection('wishes');
+  var db      = firebase.firestore();
+  var col     = db.collection('rsvp');
+  var wishCol = db.collection('wishes');
 
-  // RSVP Live-Listener
+  // RSVP — Live-Listener (alle Geräte sehen Änderungen sofort)
   col.onSnapshot(function(snapshot) {
     var state = {};
     snapshot.forEach(function(d) { state[d.id] = d.data().status; });
     renderRsvp(state);
-  });
-  window._fbSave = function(id, val) { col.doc(id).set({ status: val }); };
+  }, function(err) { console.error('RSVP Listener:', err); });
 
-  // Wishes Live-Listener
+  window._fbSave = function(id, val) {
+    col.doc(id).set({ status: val })
+      .catch(function(e) { console.error('RSVP speichern fehlgeschlagen:', e); });
+  };
+
+  // Wishes — Live-Listener
   wishCol.onSnapshot(function(snapshot) {
     var state = {};
     snapshot.forEach(function(d) { state[d.id] = d.data().fulfilled; });
     renderWishes(state);
-  });
-  window._fbSaveWish = function(id, val) { wishCol.doc(id).set({ fulfilled: val }); };
+  }, function(err) { console.error('Wishes Listener:', err); });
 
+  window._fbSaveWish = function(id, val) {
+    wishCol.doc(id).set({ fulfilled: val })
+      .catch(function(e) { console.error('Wish speichern fehlgeschlagen:', e); });
+  };
+
+  console.log('✅ Firebase v9 verbunden');
 } catch(e) {
-  console.warn('Firebase nicht konfiguriert – läuft lokal.', e);
+  console.error('Firebase Init fehlgeschlagen:', e);
 }
 </script>
 </body>

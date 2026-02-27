@@ -1,0 +1,3 @@
+# Firebase Config — wird von Netlify per Build-Script generiert.
+# NIEMALS in Git einchecken!
+src/firebase-config.js

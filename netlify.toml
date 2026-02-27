@@ -1,0 +1,12 @@
+[build]
+  command   = "bash build.sh"
+  publish   = "."
+
+# Alle Firebase-Werte als Netlify-Umgebungsvariablen setzen:
+# Netlify Dashboard → Site Settings → Environment Variables
+# FIREBASE_API_KEY
+# FIREBASE_AUTH_DOMAIN
+# FIREBASE_PROJECT_ID
+# FIREBASE_STORAGE_BUCKET
+# FIREBASE_MESSAGING_SENDER_ID
+# FIREBASE_APP_ID
